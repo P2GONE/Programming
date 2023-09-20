@@ -56,16 +56,19 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *pa
 	    // Calculate the total length of the TCP packet
 	    int tcp_packet_length = ntohs(ip->iph_len) - (ip->iph_ihl << 2) - data_offset;
 	    
-	    printf("Ethernet header, src mac: %s\n", );
-	    printf("Ethernet header, dst mac: %s\n", );
+	    printf("Ethernet header, src mac: %02X:%02X:%02X:%02X:%02X:%02X\n",
+    	    eth->ether_shost[0], eth->ether_shost[1], eth->ether_shost[2],
+    	    eth->ether_shost[3], eth->ether_shost[4], eth->ether_shost[5]);
+
+	    printf("Ethernet header, dst mac: %02X:%02X:%02X:%02X:%02X:%02X\n",
+    	    eth->ether_dhost[0], eth->ether_dhost[1], eth->ether_dhost[2],
+    	    eth->ether_dhost[3], eth->ether_dhost[4], eth->ether_dhost[5]);
             
 	    printf("IP Header, src ip: %s\n", inet_ntoa(ip->iph_sourceip));
             printf("IP Header, dst ip: %s\n", inet_ntoa(ip->iph_destip));
             
 	    printf("TCP Header, src port: %d\n", ntohs(tcp->tcph_srcport));
             printf("TCP Header, dst port:  %d\n", ntohs(tcp->tcph_destport));
-
-	    printf("Message : %s\n\n", )
 
     	    // Calculate the length of the TCP data
     	    int data_length = tcp_packet_length - data_offset;
