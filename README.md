@@ -1,3 +1,3 @@
 # Programming
-Programming with C
+Programming with C/C++
 
